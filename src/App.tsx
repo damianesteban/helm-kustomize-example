@@ -7,6 +7,7 @@ import { StyledLayoutRoot, Header3 } from './components/LayoutRoot';
 import Header from './components/Header';
 import Container from './components/Container';
 import styled from '@emotion/styled';
+import { Cog, Anchor, Paw } from './components/FontAwesome';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -33,8 +34,8 @@ const Image = styled.img`
 `;
 
 const Logo = styled.img`
-  width: 100%;
-  max-width: 125px;
+  width: 150%;
+  max-width: 500px;
 `;
 
 const Tagline = styled.h1`
@@ -71,33 +72,119 @@ const Footer = styled.p`
   padding-top: 5em;
 `;
 
+const Nav = styled.div`
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+`;
+ 
+const NavHeader = styled.div`
+  max-width: 1010px;
+  padding: 26px 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+`;
+ 
+const NavLeft = styled.div`
+  width: 33.333%;
+  text-align: left;
+`;
+ 
+const NavCenter = styled.div`
+  width: 33.333%;
+  text-align: center;
+`;
+
+const NavRight = styled.div`
+  width: 33.333%;
+  text-align: right;
+ 
+  svg {
+    margin-right: 20px;
+  }
+`;
+
+const Input = styled.input`
+  font-size: 16px;
+  border: solid 1px #dbdbdb;
+  border-radius: 3px;
+  color: #262626;
+ 
+  padding: 7px 33px;
+  border-radius: 3px;
+  color: #999;
+  cursor: text;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  background: #fafafa;
+ 
+  &:active,
+  &:focus {
+    text-align: left;
+  }
+`
+const MenuLink = styled.a``;
+
 function App() {
   return (
 
+        // {/* // <ThemeProvider theme={theme}>
+    // //   <Global
+    // //     styles={css`
+    // //       ${normalize}
+    // //       body {
+    // //         background-color: #fafafa;
+    // //       }
+    // //     `}
+    // //   />
+    // //   <StyledLayoutRoot>
+    // //     <Container>
+    // //       <Header title="Ball's Surprise!" />
+    // //     </Container>
+    // //   </StyledLayoutRoot>
+    
+    // // </ThemeProvider> */}
     <Wrapper>
+    <>
+      <Nav>
+      <NavHeader>
+        <NavLeft>Iron Cloud</NavLeft>
+ 
+        <NavCenter>
+          <Input type="text" placeholder="Search" />
+        </NavCenter>
+ 
+        <NavRight>
+          <MenuLink href="#">
+            <Anchor />
+          </MenuLink>
+ 
+          <MenuLink href="#">
+            <Paw />
+          </MenuLink>
+ 
+          <MenuLink href="#">
+            <Cog />
+          </MenuLink>
+        </NavRight>
+      </NavHeader>
+    </Nav>
+  </>
+      <div>
       <Logo src="https://iili.io/24rVHb.md.png" />
-      <Tagline><Bold>It has never felt so good to feel so hard.</Bold><br /></Tagline>
-
-    </Wrapper>
-    
-
-    // <ThemeProvider theme={theme}>
-    //   <Global
-    //     styles={css`
-    //       ${normalize}
-    //       body {
-    //         background-color: #fafafa;
-    //       }
-    //     `}
-    //   />
-    //   <StyledLayoutRoot>
-    //     <Container>
-    //       <Header title="Ball's Surprise!" />
-    //     </Container>
-    //   </StyledLayoutRoot>
-    
-    // </ThemeProvider>
+    </div>
+  </Wrapper>
   );
+
+    {/* </> */}
+  
+
+    
+
+
+  
 }
 
 export default App;

@@ -1,0 +1,31 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+    - image: damianesteban/helm-app
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kustomize:
+    path: kustomize/overlays/local
+portForward:
+  - resourceType: deployment
+    resourceName: multi-stage-react-app
+    port: 80
+    localPort: 3001
+profiles:
+  - name: damianesteban
+    build:
+      artifacts:
+        - image: damianesteban/helm-app:latest
+          docker:
+            dockerfile: Dockerfile
+    deploy:
+      kubectl:
+        manifests:
+          - kubernetes/*
+
+  - name: kustomize-prod
+    deploy:
+      kustomize:
+        path: kustomize/overlays/prod

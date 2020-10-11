@@ -11,8 +11,9 @@ const StyledLayoutRoot = styled.div`
 `
 
 const Header3 = styled.h3`
-  margin-bottom: 10px;
-  display: inline-block;
+  margin-bottom: 2px;
+  
+  display: box;
   font-style: normal;
 `
 
