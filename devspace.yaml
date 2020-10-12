@@ -1,0 +1,8 @@
+version: v1beta9
+deployments:
+- name: multi-stage-react-app
+  helm:
+    chart:
+      name: multi-stage-react-app-chart
+      repo: https://damianesteban.github.io/helm-repo/
+dev: {}

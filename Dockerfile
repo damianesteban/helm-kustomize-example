@@ -1,17 +1,13 @@
-# build environment
-FROM node:12.9.0-alpine as build
+
+FROM mhart/alpine-node:13 AS builder
 WORKDIR /app
+COPY . .
+RUN npm install react-scripts -g --silent
+RUN yarn install
+RUN yarn run build
 
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json /app/package.json
-COPY yarn.lock /app/yarn.lock
-RUN yarn install --silent
-RUN yarn config set unsafe-perm true 
-COPY . /app
-RUN npm run build
-
-# production environment
-FROM nginx:1.17.3-alpine
-COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM mhart/alpine-node
+RUN yarn global add serve
+WORKDIR /app
+COPY --from=builder /app/build .
+CMD ["serve", "-p", "80", "-s", "."]
