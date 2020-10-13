@@ -1,0 +1,10 @@
+bases:
+  - ../../base
+
+patchesStrategicMerge:
+  - deployment-prod.yaml
+
+configMapGenerator:
+  - name: iron-app-config
+    files:
+      - config.js=prod.properties #add here the key config.js as you would when creating with kubectl

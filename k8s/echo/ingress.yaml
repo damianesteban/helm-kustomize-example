@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+spec:
+  rules:
+  - host: echo.immutable.store
+    http:
+      paths:
+      - backend:
+          serviceName: echo-http
+          servicePort: 80

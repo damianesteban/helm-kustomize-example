@@ -2,7 +2,7 @@
 FROM mhart/alpine-node:13 AS builder
 WORKDIR /app
 COPY . .
-RUN npm install react-scripts -g --silent
+RUN yarn global add react-scripts --silent
 RUN yarn install
 RUN yarn run build
 
