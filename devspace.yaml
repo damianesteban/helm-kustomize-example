@@ -1,0 +1,38 @@
+version: v1beta9
+images:
+  app:
+    image: damianesteban/iron-app
+    preferSyncOverRebuild: true
+    injectRestartHelper: true
+    appendDockerfileInstructions:
+    - USER root
+    build:
+      docker:
+        options:
+          target: target
+dev:
+  ports:
+  - imageName: app
+    forward:
+    - port: 3001
+      remotePort: 80
+  open:
+  - url: http://localhost:3001
+  sync:
+  - imageName: app
+    excludePaths:
+    - .git/
+    uploadExcludePaths:
+    - node_modules
+    - devspace.yaml
+    onUpload:
+      restartContainer: true
+profiles:
+- name: production
+  patches:
+  - op: remove
+    path: images.app.injectRestartHelper
+  - op: remove
+    path: images.app.appendDockerfileInstructions
+  - op: remove
+    path: images.app.build.docker.options.target

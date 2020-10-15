@@ -6,7 +6,7 @@ RUN yarn global add react-scripts --silent
 RUN yarn install
 RUN yarn run build
 
-FROM mhart/alpine-node
+FROM mhart/alpine-node AS target
 RUN yarn global add serve
 WORKDIR /app
 COPY --from=builder /app/build .
